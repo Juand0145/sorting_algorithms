@@ -1,4 +1,4 @@
-## Python - Almost a circle
+## 0x1B. C - Sorting algorithms & Big O
 In this frepositorty , we will find a compilation of files that will help us to understand concepts and aplicactions related to sorting algorthims, Big O and help us to answer the next questions:
 
   -   At least four different sorting algorithms
