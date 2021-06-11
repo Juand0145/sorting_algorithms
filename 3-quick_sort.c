@@ -4,20 +4,20 @@
  * print_sort - sort the given array printed
  * and return the pivot
  * @array: The array to sort
- * @left: position of the right sub array
- * @right: position of the right sub array
+ * @low: position of the high sub array
+ * @high: position of the high sub array
  * @size: total size of the array
  * Return: The pivot
  */
-int print_sort(int *array, int left, int right, size_t size)
+int print_sort(int *array, int low, int high, size_t size)
 {
 	int i, j, swap;
 
-	j = left - 1;
+	j = low - 1;
 
-	for (i = left; i < right; i++)
+	for (i = low; i < high; i++)
 	{
-		if (array[i] < array[right])
+		if (array[i] < array[high])
 		{
 			j++;
 			if (j != i)
@@ -30,11 +30,11 @@ int print_sort(int *array, int left, int right, size_t size)
 		}
 	}
 
-	if (array[right] < array[j + 1])
+	if (array[high] < array[j + 1])
 	{
 		swap = array[j + 1];
-		array[j + 1] = array[right];
-		array[right] = swap;
+		array[j + 1] = array[high];
+		array[high] = swap;
 		print_array(array, size);
 	}
 
@@ -45,19 +45,19 @@ int print_sort(int *array, int left, int right, size_t size)
  * split_array - split the two arrays and keept doint until
  * just have one element
  * @array: The array to sort
- * @left: position of the right sub array
- * @right: position of the right sub array
+ * @low: position of the high sub array
+ * @high: position of the high sub array
  * @size: total size of the array
  */
-void split_array(int *array, int left, int right, size_t size)
+void split_array(int *array, int low, int high, size_t size)
 {
 	int pivot;
 
-	if (left < right)
+	if (low < high)
 	{
-		pivot = print_sort(array, left, right, size);
-		split_array(array, left, pivot - 1, size);
-		split_array(array, pivot + 1, right, size);
+		pivot = print_sort(array, low, high, size);
+		split_array(array, low, pivot - 1, size);
+		split_array(array, pivot + 1, high, size);
 	}
 }
 
@@ -68,13 +68,13 @@ void split_array(int *array, int left, int right, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	int left, right;
+	int low, high;
 
 	if (array == NULL || size < 2)
 		return;
 
-	left = 0;
-	right = (int)size - 1;
+	low = 0;
+	high = (int)size - 1;
 
-	split_array(array, left, right, size);
+	split_array(array, low, high, size);
 }
